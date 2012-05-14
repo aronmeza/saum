@@ -97,7 +97,9 @@ log4j = {
 //grails gorm configuration
 //grails.gorm.autoFlush = false
 grails.gorm.failOnError = true
-
+grails.gorm.default.mapping={
+    id generator:'identity'
+}
 
 ckeditor {
 
