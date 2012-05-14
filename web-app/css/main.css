@@ -132,7 +132,7 @@ img {
 	text-indent: -9999px;
 }
 
-/* NAVIGATION MENU */
+/* NAVIGATION MENU 
 
 .nav {
 	background-color: #efefef;
@@ -189,6 +189,7 @@ img {
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
+*/
 
 .nav a.home {
 	background-image: url(../images/skin/house.png);
