@@ -1,13 +1,16 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "org.postgresql.Driver"
+    username = "postgres"
+    password = "admin"
+    dbCreate = "create-drop"//"update"
+    url = 'jdbc:postgresql:comedorum'
 }
 hibernate {
-    cache.use_second_level_cache = true
-    cache.use_query_cache = false
-    cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory'
+     cache.use_second_level_cache = true
+     cache.use_query_cache = true
+     cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
+     show_sql = true
 }
 // environment specific settings
 environments {

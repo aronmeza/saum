@@ -1,5 +1,5 @@
 package saum
-
+import org.saum.Constantes
 
 class Receta {
 	String nombre
