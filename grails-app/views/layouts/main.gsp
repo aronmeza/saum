@@ -15,11 +15,12 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'menu.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'button.css')}" type="text/css">
 		<g:layoutHead/>
         <r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'logoSaum.png')}" alt="Saum"/></a></div>
+		<div id="grailsLogo" role="banner"><a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'logoSaum.png')}" alt="Saum"/></a></div>
 		<g:render template="/common/header"/>	
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
@@ -27,5 +28,6 @@
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
         <r:layoutResources />
+        
 	</body>
 </html>
