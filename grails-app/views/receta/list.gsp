@@ -24,3 +24,43 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="nombre" title="${message(code: 'receta.nombre.label', default: 'Nombre')}" />
+					
+						<g:sortableColumn property="rendimiento" title="${message(code: 'receta.rendimiento.label', default: 'Rendimiento')}" />
+					
+						<g:sortableColumn property="temperatura" title="${message(code: 'receta.temperatura.label', default: 'Temperatura')}" />
+					
+						<g:sortableColumn property="tiempo" title="${message(code: 'receta.tiempo.label', default: 'Tiempo')}" />
+					
+						<g:sortableColumn property="porcion" title="${message(code: 'receta.porcion.label', default: 'Porcion')}" />
+					
+						<g:sortableColumn property="textura" title="${message(code: 'receta.textura.label', default: 'Textura')}" />
+					
+					</tr>
+				</thead>
+				<tbody>
+				<g:each in="${recetaInstanceList}" status="i" var="recetaInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+						<td><g:link action="show" id="${recetaInstance.id}">${fieldValue(bean: recetaInstance, field: "nombre")}</g:link></td>
+					
+						<td>${fieldValue(bean: recetaInstance, field: "rendimiento")}</td>
+					
+						<td>${fieldValue(bean: recetaInstance, field: "temperatura")}</td>
+					
+						<td>${fieldValue(bean: recetaInstance, field: "tiempo")}</td>
+					
+						<td>${fieldValue(bean: recetaInstance, field: "porcion")}</td>
+					
+						<td>${fieldValue(bean: recetaInstance, field: "textura")}</td>
+					
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<g:paginate total="${recetaInstanceTotal}" />
+			</div>
+		</div>
+	</body>
+</html>
