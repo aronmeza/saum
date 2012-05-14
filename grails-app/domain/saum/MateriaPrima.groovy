@@ -1,12 +1,10 @@
 package saum
 
 class MateriaPrima {
-	String unidadMedida
 	String nombre
     
     static constraints = {
 		nombre unique:true, maxSize:128, blank:false
-		unidadMedida inList:['kg','gr','l','ml','pza'], blank:false
     }
 
     static namedQueries = {
@@ -14,6 +12,10 @@ class MateriaPrima {
 			filtro="${filtro.toUpperCase()}%"
 			ilike 'nombre', filtro
 			}
+	}
+	
+	void setNombre( String n){
+		nombre = n?.toUpperCase()
 	}
 
 }
