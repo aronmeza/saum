@@ -7,7 +7,9 @@ class RecetaController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+        //redirect(action: "list", params: params)
+         def listaRecectas = Receta.findAll()
+     	[listaRecectasInstance: listaRecectas]
     }
 
     def list() {
