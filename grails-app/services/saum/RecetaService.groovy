@@ -38,5 +38,47 @@ class RecetaService {
         }
         return ingrediente
     }
+    
+    
+    @Transactional(readOnly = true)    
+    List<Ingrediente> sumaIngredientes(List<Ingrediente> ingrs, Long idReceta, BigDecimal rendimiento){
+       Map<Long,Ingrediente> suma=new HashMap<Integer, BigDecimal>()
+       for(Ingrediente ing:ingrs){
+           ing=homologarUnidadMedida(ing)
+           suma.put(ing.materia.id,ing)
+       }
+       def receta=convertirReceta (rendimiento, idReceta)
+       for(Ingrediente ingres:receta.ingredientes){
+           ingres=homologarUnidadMedida(ingres)
+           if(suma.containsKey(ingres.materia.id)){
+               ingres.cantidad=suma.getAt(ingres.materia.id).cantidad.add(ingres.cantidad)
+               suma.put(ingres.materia.id,ingres)
+           }else{
+               suma.put(ingres.materia.id,ingres)
+           }
+       }
+       
+        List<Ingrediente> nueva=new ArrayList<Ingrediente>()
+        def llaves=suma.keySet()
+        def itera=llaves.iterator()
+        while(itera.hasNext()){
+            Long id=itera.next() 
+            Ingrediente ingreFinal=suma.getAt(id)
+            ingreFinal=convierteUnidadMedida(ingreFinal)
+            nueva.add(ingreFinal)
+        }        
+        return nueva
+    }
+    
+    Ingrediente homologarUnidadMedida(Ingrediente ingrediente){
+        if(ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_KILOGRAMO)||ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_LITRO)){
+            ingrediente.cantidad = ingrediente.cantidad.multiply(new BigDecimal("1000"))
+            if(ingrediente.unidadMedida == Constantes.UNIDAD_MEDIDA_KILOGRAMO){
+                ingrediente.unidadMedida = Constantes.UNIDAD_MEDIDA_GRAMO
+            }else if(ingrediente.unidadMedida == Constantes.UNIDAD_MEDIDA_LITRO){
+                ingrediente.unidadMedida = Constantes.UNIDAD_MEDIDA_MILILITRO
+            }
+        }
+    }
 
 }
