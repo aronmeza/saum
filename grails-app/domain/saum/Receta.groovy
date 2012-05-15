@@ -4,7 +4,7 @@ import org.saum.Constantes
 class Receta {
 	String nombre
 	static hasMany=[etapas:Etapa]
-	BigDecimal rendimiento
+        BigDecimal rendimiento
 //detalles generales
 	String tipoPlato
     String temperatura
@@ -21,7 +21,7 @@ class Receta {
     String carbohidratos
     String colesterol
     String sodio
-    String fibra
+    String fibra    
     
     static constraints = {
 		nombre unique:true, blank:false, maxSize:70
@@ -48,5 +48,5 @@ class Receta {
     
     static mapping = {
         etapas sort: 'id', order: 'asc'
-    }
+    }    
 }
