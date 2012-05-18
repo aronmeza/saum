@@ -5,14 +5,17 @@ import org.saum.Constantes
 class RecetaService {
     @Transactional(readOnly = true)
      Receta convertirReceta (BigDecimal rendimiento, def id){
+         log.debug "convertirReceta ${rendimiento}"
          Receta receta=Receta.get(id)
          for(Etapa etapa:receta.etapas){
              for(Ingrediente ingrediente:etapa.ingredientes){
-                 ingrediente.cantidad = ingrediente.cantidad.multiply(cantidad.divide(rendimiento,2,BigDecimal.ROUND_HALF_UP))
+                 log.debug "+++++++++>Ingrediente ${ingrediente.materia.nombre} Cantidad ${ingrediente.cantidad} Unidad ${ingrediente.unidadMedida}"
+                 ingrediente.cantidad = ingrediente.cantidad.multiply(rendimiento.divide(receta.rendimiento,2,BigDecimal.ROUND_HALF_UP))
                  ingrediente=convierteUnidadMedida(ingrediente)
+                 log.debug "+++++++++>Ingrediente ${ingrediente.materia.nombre} Cantidad ${ingrediente.cantidad} Unidad ${ingrediente.unidadMedida}"
              }             
          }
-         receta.rendimiento=rendimiento
+         //receta.rendimiento=rendimiento
      }
      
     
@@ -27,7 +30,7 @@ class RecetaService {
                 }
             }
         }else if(ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_KILOGRAMO)||ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_LITRO)){
-            if(ingrediente.cantidadintValue()==0){
+            if(ingrediente.cantidad.intValue()==0){
                 ingrediente.cantidad=ingrediente.cantidad.multiply(new BigDecimal("1000"))
                 if(ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_KILOGRAMO)){
                     ingrediente.unidadMedida=Constantes.UNIDAD_MEDIDA_GRAMO
