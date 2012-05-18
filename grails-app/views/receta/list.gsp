@@ -66,7 +66,7 @@
 <div id="dialog-form-receta" title="Agrear Receta">
   <p class="validateTips"></p>
 
-  <form id="formrecetasend" action="/comedorum/receta/save"  method="POST" >
+  <form id="formrecetasend" action="/saum/receta/save"  method="POST" >
     <fieldset class="dialog">
       <label for="nombre" class="dialog"><g:message code="receta.nombre.label" default="Nombre"/></label>
       <input type="text" name="nombre" id="nombreform" class="text ui-widget-content ui-corner-all dialog" />
@@ -118,7 +118,7 @@
 							$( "#rendimientoform" ).text( rendimiento.val());
 							$( "#nombreform" ).text(nombre.val() ); 
 							$( "#dialog-form-receta" ).dialog( "close" );
-							window.location="/comedorum/receta/saveMin?nombre="+$( "#nombreform" ).text()+"&rendimiento="+$( "#rendimientoform" ).text()
+							window.location="/saum/receta/saveMin?nombre="+$( "#nombreform" ).text()+"&rendimiento="+$( "#rendimientoform" ).text()
 	
 						}
 					},
