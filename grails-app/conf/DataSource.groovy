@@ -3,7 +3,7 @@ dataSource {
     driverClassName = "org.postgresql.Driver"
     username = "postgres"
     password = "admin"
-    dbCreate = "create-drop"//"update"
+    dbCreate = "update"//"create-drop"//"update"
     url = 'jdbc:postgresql:comedorum'
 }
 hibernate {
