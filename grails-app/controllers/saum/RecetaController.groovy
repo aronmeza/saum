@@ -6,6 +6,7 @@ import grails.converters.*
 class RecetaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    def recetaService
 
     def index() {
         //redirect(action: "list", params: params)
@@ -39,7 +40,7 @@ class RecetaController {
 		if(params.nombre != null){
 		def id = Receta.findByNombre(params.nombre).id
 		if(id!=null){
-		def receta = recetaService.convertirReceta(params.nombre, new BigDecimal(params.rendimiento),id)
+		def receta = recetaService.convertirReceta(new BigDecimal(params.rendimiento),id)
 		render(view:"show", model: [recetaInstance:receta])
 		return
 		}else{

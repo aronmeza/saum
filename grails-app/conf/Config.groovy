@@ -92,6 +92,12 @@ log4j = {
            'net.sf.ehcache.hibernate'
            
      warn   'org.mortbay.log'
+     
+     debug  'grails.app'
+     
+     off    'grails.app.services.org.grails.plugin.resource',
+           'grails.app.taglib.org.grails.plugin.resource',
+           'grails.app.resourceMappers.org.grails.plugin.resource'
 }
 
 //grails gorm configuration
