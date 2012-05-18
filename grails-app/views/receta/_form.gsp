@@ -2,7 +2,7 @@
 
 
 
-<div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required">
+<div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
 	<label for="nombre">
 		<g:message code="receta.nombre.label" default="Nombre" />
 		<span class="required-indicator">*</span>
@@ -10,7 +10,7 @@
 	<g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
 </div>
 
-<div class="${hasErrors(bean: recetaInstance, field: 'rendimiento', 'error')} required">
+<div class="${hasErrors(bean: recetaInstance, field: 'rendimiento', 'error')} required div-r">
 	<label for="rendimiento">
 		<g:message code="receta.rendimiento.label" default="Rendimiento" />
 		<span class="required-indicator">*</span>
@@ -18,7 +18,7 @@
 	<g:field type="number" name="rendimiento" required="" value="${fieldValue(bean: recetaInstance, field: 'rendimiento')}"/>
 </div>
 
-<div class="${hasErrors(bean: recetaInstance, field: 'temperatura', 'error')}">
+<div class="${hasErrors(bean: recetaInstance, field: 'temperatura', 'error')} div-l">
 	<label for="temperatura">
 		<g:message code="receta.temperatura.label" default="Temperatura" />
 		
@@ -26,7 +26,7 @@
 	<g:textField name="temperatura" maxlength="40" value="${recetaInstance?.temperatura}"/>
 </div>
 
-<div class="${hasErrors(bean: recetaInstance, field: 'tiempo', 'error')}">
+<div class="${hasErrors(bean: recetaInstance, field: 'tiempo', 'error')}div-r">
 	<label for="tiempo">
 		<g:message code="receta.tiempo.label" default="Tiempo" />
 		
@@ -37,7 +37,7 @@
 <div id="accordion">
 <h3>Datos Complementarios</h3>
 	<div>
-		<div class="${hasErrors(bean: recetaInstance, field: 'porcion', 'error')}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'porcion', 'error')} div-l">
 			<label for="porcion">
 				<g:message code="receta.porcion.label" default="Porcion" />
 				
@@ -45,7 +45,7 @@
 			<g:textField name="porcion" maxlength="40" value="${recetaInstance?.porcion}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'textura', 'error')}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'textura', 'error')}div-r">
 			<label for="textura">
 				<g:message code="receta.textura.label" default="Textura" />
 				
@@ -53,7 +53,7 @@
 			<g:textField name="textura" maxlength="40" value="${recetaInstance?.textura}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'forma', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'forma', 'error')} div-l">
 			<label for="forma">
 				<g:message code="receta.forma.label" default="Forma" />
 				
@@ -61,7 +61,7 @@
 			<g:textField name="forma" maxlength="40" value="${recetaInstance?.forma}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'color', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'color', 'error')} div-r">
 			<label for="color">
 				<g:message code="receta.color.label" default="Color" />
 				
@@ -69,7 +69,7 @@
 			<g:textField name="color" maxlength="40" value="${recetaInstance?.color}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'sabor', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'sabor', 'error')} div-l">
 			<label for="sabor">
 				<g:message code="receta.sabor.label" default="Sabor" />
 				
@@ -77,7 +77,7 @@
 			<g:textField name="sabor" maxlength="40" value="${recetaInstance?.sabor}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'calorias', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'calorias', 'error')} div-r">
 			<label for="calorias">
 				<g:message code="receta.calorias.label" default="Calorias" />
 				
@@ -85,7 +85,7 @@
 			<g:textField name="calorias" maxlength="40" value="${recetaInstance?.calorias}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'proteinas', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'proteinas', 'error')} div-l">
 			<label for="proteinas">
 				<g:message code="receta.proteinas.label" default="Proteinas" />
 				
@@ -93,7 +93,7 @@
 			<g:textField name="proteinas" maxlength="40" value="${recetaInstance?.proteinas}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'grasa', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'grasa', 'error')} div-r">
 			<label for="grasa">
 				<g:message code="receta.grasa.label" default="Grasa" />
 				
@@ -101,7 +101,7 @@
 			<g:textField name="grasa" maxlength="40" value="${recetaInstance?.grasa}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'carbohidratos', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'carbohidratos', 'error')} div-l">
 			<label for="carbohidratos">
 				<g:message code="receta.carbohidratos.label" default="Carbohidratos" />
 				
@@ -109,7 +109,7 @@
 			<g:textField name="carbohidratos" maxlength="40" value="${recetaInstance?.carbohidratos}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'colesterol', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'colesterol', 'error')} div-r">
 			<label for="colesterol">
 				<g:message code="receta.colesterol.label" default="Colesterol" />
 				
@@ -117,7 +117,7 @@
 			<g:textField name="colesterol" maxlength="40" value="${recetaInstance?.colesterol}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'sodio', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'sodio', 'error')} div-l">
 			<label for="sodio">
 				<g:message code="receta.sodio.label" default="Sodio" />
 				
@@ -125,7 +125,7 @@
 			<g:textField name="sodio" maxlength="40" value="${recetaInstance?.sodio}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'fibra', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'fibra', 'error')} div-r">
 			<label for="fibra">
 				<g:message code="receta.fibra.label" default="Fibra" />
 				
@@ -133,7 +133,7 @@
 			<g:textField name="fibra" maxlength="40" value="${recetaInstance?.fibra}"/>
 		</div>
 		
-		<div class="${hasErrors(bean: recetaInstance, field: 'tipoPlato', 'error')} ">
+		<div class="${hasErrors(bean: recetaInstance, field: 'tipoPlato', 'error')}div-l ">
 			<label for="tipoPlato">
 				<g:message code="receta.tipoPlato.label" default="Tipo Plato" />
 				

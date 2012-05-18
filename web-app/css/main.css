@@ -590,3 +590,24 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+.div-l {
+    float: left;
+    display: table-row;
+    width: 50%;
+    margin: 5px 0px 5px 0px;
+}
+.div-r {
+    float: right;
+    display: table-row;
+    width: 50%;
+ 	margin: 5px 0px 5px 0px;
+}
+
+input {
+    float: right;
+    margin-right: 20px;
+}
+
+#accordion {
+    display: table;
+}
