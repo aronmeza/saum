@@ -17,4 +17,8 @@ class Ingrediente {
         return cantidad + " " + unidadMedida + " " + materia.nombre +" " +presentacion + " " + etapa
         
     }
+    
+    void setPresentacion(String str){
+        presentacion=str?.toUpperCase()
+    }
 }

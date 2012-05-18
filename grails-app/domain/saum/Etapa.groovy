@@ -15,4 +15,12 @@ class Etapa {
     static mapping = {
         ingredientes sort: 'id', order: 'asc'
     }
+    
+    void setNombre( String n){
+		nombre = n?.toUpperCase()
+    }
+    
+    void setProcedimiento( String n){
+        procedimiento = n?.toUpperCase()
+    }
 }

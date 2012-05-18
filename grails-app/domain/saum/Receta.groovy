@@ -48,5 +48,25 @@ class Receta {
     
     static mapping = {
         etapas sort: 'id', order: 'asc'
-    }    
+    }
+
+    void setNombre( String n){
+        nombre = n?.toUpperCase()
+    }
+
+    void setTextura(String str){
+        textura=str?.toUpperCase()
+    }
+    
+    void setForma(String str){
+        forma=str?.toUpperCase()
+    }
+    
+    void setColor(String str){
+        color=str?.toUpperCase()
+    }
+    void setSabor(String str){
+        sabor=str?.toUpperCase()
+    }
+    
 }
