@@ -1,6 +1,7 @@
 package saum
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.*
 
 class RecetaController {
 
@@ -33,11 +34,25 @@ class RecetaController {
     }
 
     def show() {
-        def recetaInstance = Receta.get(params.id)
+     def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
+		if(params.nombre != null){
+		def id = Receta.findByNombre(params.nombre).id
+		if(id!=null){
+		def receta = recetaService.convertirReceta(params.nombre, new BigDecimal(params.rendimiento),id)
+		render(view:"show", model: [recetaInstance:receta])
+		return
+		}else{
+		       flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
+                    redirect(action: "list")
+                return
+
+		}
+		}else{
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
-            redirect(action: "list")
-            return
+	            redirect(action: "list")
+            	return
+		}
         }
 
         [recetaInstance: recetaInstance]
@@ -102,4 +117,74 @@ class RecetaController {
             redirect(action: "show", id: params.id)
         }
     }
+    
+     def saveMin(){
+        println "nombre rendimiento"
+        def receta = Receta.findByNombre(params.nombre);
+        
+        if(receta!=null){
+            redirect(action: "edit", id: receta.id)
+        }else{
+            receta = new Receta(params);
+            println "$receta.nombre"
+            receta.save(flush:true)
+            redirect(action: "edit", id: receta.id)
+        }
+    }
+	
+	def getrecetaajax(){
+	println "$params ---------------------------------------receta------------"
+	 def recetaInstance = Receta.get(params.id)
+        if (!recetaInstance) {
+            render "{error}" 
+        }
+
+        render recetaInstance as JSON
+	}
+	
+	def indexSuma(){
+		def listaRecectas = Receta.findAll()
+     	session.ObjectListKey = null
+     [listaRecectasInstance: listaRecectas]
+	} 
+	
+	def sumaReceta(){
+		def listaRecectas = Receta.findAll()
+     
+		println "SUMA RECETASSSS-------> $params -----------"+session.ObjectListKey+"--------"
+		
+		def paramsIng= session.ObjectListKey
+                
+		if(params.nombre != null){
+			def id = Receta.findByNombre(params.nombre).id
+			if(id!=null){
+			def listaIngredientes
+				if(paramsIng!=null){
+					println "bingoooooooo $paramsIng"				
+					listaIngredientes =recetaService.sumaIngredientes( paramsIng,  id, new BigDecimal(params.rendimiento));	
+				}
+				else{
+				println "no contiene ingredientes anteriores $paramsIng"
+					listaIngredientes =recetaService.sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
+				}
+				
+				session.ObjectListKey = listaIngredientes
+				render(view: "indexSuma", model: [listaIngredientes: listaIngredientes,listaRecectasInstance: listaRecectas])
+				return
+			}else{
+		        flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
+	            redirect(action: "list")
+	            return
+			}
+		}else{
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
+	            redirect(action: "list")
+            	return
+		}
+		
+		render(view: "indexSuma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
+	}
+	
+	
+    
 }
