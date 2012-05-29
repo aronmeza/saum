@@ -18,7 +18,12 @@ class EtapaController {
     def create() {
         [etapaInstance: new Etapa(params)]
     }
-
+	
+	def createMin() {
+		println "--------------------------------"+params	
+        
+    }
+	
     def save() {
         log.debug "Save ${params}"
         def etapaInstance = new Etapa(params)
