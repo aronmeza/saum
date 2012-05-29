@@ -50,7 +50,7 @@ class EtapaController {
             return
         }
 
-        [etapaInstance: etapaInstance]
+        [etapaInstance: etapaInstance, ingredienteInstance:new Ingrediente()]
     }
 
     def update() {

@@ -5,6 +5,7 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'etapa.label', default: 'Etapa')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+                <r:require module="jquery-ui"/>
 	</head>
 	<body>
 		<a href="#edit-etapa" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -33,5 +34,38 @@
 				</fieldset>
 			</g:form>
 		</div>
-	</body>
+                <input id="crear-ingrediente" class="button green rigth" value="${message(code: 'default.button.new.ingrediente', default: 'Nuevo Ingrediente')}" />
+                
+                <div id="dialog-form-ingrediente" title="Agregar Ingrediente">
+                  <g:form method="post" controller="ingrediente" action="save">                    
+                  <fieldset class="form">
+                    <g:hiddenField name="etapaId" value="${etapaInstance?.id}" />
+                    <g:render template="/ingrediente/form"/>
+                  </fieldset>
+                  <fieldset class="buttons">
+                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <input id="cancelar" class="cancel" value="${message(code: 'label.cancelar', default: 'Cancelar')}" />
+                  </fieldset>
+                  </g:form>
+                </div>
+        <r:script>
+          $(document).ready(function(){
+          $( "#dialog-form-ingrediente" ).dialog("close");
+          $( "#dialog-form-ingrediente" ).dialog({
+          autoOpen: false,
+          height: 400,
+          width: 650,
+          modal: true 
+          });
+          
+          $("#crear-ingrediente").click(function(){
+          $( "#dialog-form-ingrediente" ).dialog("open");
+        });
+          $("#cancelar").click(function(){
+          $( "#dialog-form-ingrediente" ).dialog("close");
+        });
+          
+          });
+        </r:script>
+        </body>
 </html>

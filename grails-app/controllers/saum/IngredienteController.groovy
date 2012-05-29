@@ -21,6 +21,7 @@ class IngredienteController {
 
     def save() {
         def ingredienteInstance = new Ingrediente(params)
+        ingredienteInstance.etapa=Etapa.get(params.etapaId)
         if (!ingredienteInstance.save(flush: true)) {
             render(view: "create", model: [ingredienteInstance: ingredienteInstance])
             return
