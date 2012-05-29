@@ -73,7 +73,7 @@
 	<!----------------------------------------------------------------------------------------->
 </g:each>
 <div class="row">
-	<g:link class="button green left" style="color:#ffffff;" controller="etapa" action="createMin" params="['receta.id': recetaInstance?.id]">Agregar Etapa</g:link>
+	<g:link class="button green left" style="color:#ffffff;" controller="etapa" action="createMin" params="['recetaId': recetaInstance?.id]">Agregar Etapa</g:link>
 </div>
 <div id="accordion">
 <h3><a>Datos Complementarios</a></h3>
