@@ -26,7 +26,7 @@
 	
 <ul class="one-to-many">
 <g:each in="${etapaInstance?.ingredientes?}" var="i">
-    <li><g:link controller="ingrediente" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+    <li><g:link controller="ingrediente" action="edit2" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="ingrediente" action="create" params="['etapa.id': etapaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'ingrediente.label', default: 'Ingrediente')])}</g:link>
@@ -35,11 +35,11 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: etapaInstance, field: 'receta', 'error')} required">
+<!--div class="fieldcontain ${hasErrors(bean: etapaInstance, field: 'receta', 'error')} required">
 	<label for="receta">
 		<g:message code="etapa.receta.label" default="Receta" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="receta" name="receta.id" from="${saum.Receta.list()}" optionKey="id" required="" value="${etapaInstance?.receta?.id}" class="many-to-one"/>
-</div>
+</div-->
 

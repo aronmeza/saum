@@ -26,19 +26,28 @@
 	<g:textField name="presentacion" maxlength="40" value="${ingredienteInstance?.presentacion}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: ingredienteInstance, field: 'etapa', 'error')} required">
+<!--div class="fieldcontain ${hasErrors(bean: ingredienteInstance, field: 'etapa', 'error')} required">
 	<label for="etapa">
 		<g:message code="ingrediente.etapa.label" default="Etapa" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="etapa" name="etapa.id" from="${saum.Etapa.list()}" optionKey="id" required="" value="${ingredienteInstance?.etapa?.id}" class="many-to-one"/>
-</div>
+</div-->
 
 <div class="fieldcontain ${hasErrors(bean: ingredienteInstance, field: 'materia', 'error')} required">
 	<label for="materia">
 		<g:message code="ingrediente.materia.label" default="Materia" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="materia" name="materia.id" from="${saum.MateriaPrima.list()}" optionKey="id" required="" value="${ingredienteInstance?.materia?.id}" class="many-to-one"/>
+	<!--g:select id="materia" name="materia.id" from="${saum.MateriaPrima.list()}" optionKey="id" required="" value="${ingredienteInstance?.materia?.id}" class="many-to-one"/-->
+	 <input type="text" id="ingNombre" name="materia.nombre" id="ingNombre" value="${ingredienteInstance?.materia?.nombre}" />
 </div>
 
+
+<r:script>
+	$(document).ready(function(){
+		$("input#ingNombre").autocomplete({
+		   source: '${createLink(action:'buscaMateriaPrima', controller:'MateriaPrima')}'
+	   });
+	});
+</r:script>

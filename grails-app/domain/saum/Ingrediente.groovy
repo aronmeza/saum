@@ -14,7 +14,11 @@ class Ingrediente {
     }
     
     String toString(){
-        return cantidad + " " + unidadMedida + " " + materia.nombre +" " +presentacion
+    	String decimales = String.format("%.2f", cantidad);
+    	if(decimales.substring(decimales.length()-2).equals("00")){
+    		return decimales.substring(0,decimales.length()-3) + " " + unidadMedida + " " + materia.nombre +" " +presentacion
+    	}
+    	return cantidadDividida[0] + " " + unidadMedida + " " + materia.nombre +" " +presentacion
         
     }
     

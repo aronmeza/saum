@@ -620,3 +620,8 @@ a.skip {
 .row {
     display: table-row-group;
 }
+.border {
+    border: 2px solid;
+    -moz-border-radius: 5px 10px;
+    margin-bottom: 1em;
+}

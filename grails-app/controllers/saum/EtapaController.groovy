@@ -80,7 +80,8 @@ class EtapaController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'etapa.label', default: 'Etapa'), etapaInstance.id])
-        redirect(action: "show", id: etapaInstance.id)
+		redirect(controller:"receta", action:"edit", id: etapaInstance.receta.id)
+        //redirect(action: "show", id: etapaInstance.id)
     }
 
     def delete() {
