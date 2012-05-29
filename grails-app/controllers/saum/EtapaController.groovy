@@ -20,6 +20,7 @@ class EtapaController {
     }
 
     def save() {
+        log.debug "Save ${params}"
         def etapaInstance = new Etapa(params)
         if (!etapaInstance.save(flush: true)) {
             render(view: "create", model: [etapaInstance: etapaInstance])

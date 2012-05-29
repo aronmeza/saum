@@ -63,7 +63,7 @@
 		
 		
 		
-<div id="dialog-form-receta" title="Agrear Receta">
+<div id="dialog-form-receta" title="Agregar Receta">
   <p class="validateTips"></p>
 
   <form id="formrecetasend" action="/saum/receta/save"  method="POST" >
