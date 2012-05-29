@@ -15,6 +15,28 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+                        
+                <div class="row">
+                        <div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
+                          <label for="nombre">
+                                  <g:message code="receta.nombre.label" default="Nombre" />
+                                  <span class="required-indicator">*</span>
+                          </label>
+                          <g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
+                        </div>
+                  
+                        <div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
+                          <label for="nombre">
+                                  <g:message code="receta.nombre.label" default="Nombre" />
+                                  <span class="required-indicator">*</span>
+                          </label>
+                          <g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
+                        </div>
+		</div>
+                        
+                        
+                        
+                        
 			<ol class="property-list receta">
 			
 				<g:if test="${recetaInstance?.nombre}">
