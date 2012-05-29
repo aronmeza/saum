@@ -56,7 +56,6 @@ class RecetaController {
 		}
         }
 		
-		println "Datos de receta:              "+recetaInstance
         [recetaInstance: recetaInstance]
     }
 
@@ -72,6 +71,7 @@ class RecetaController {
     }
 
     def update() {
+    	println "											" + params
         def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])

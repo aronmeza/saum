@@ -59,7 +59,7 @@
 		</div>
 		
 		
-		<input id="crear-receta" class="button green rigth" value="${message(code: 'default.button.new.receta', default: 'Nueva Receta')}" />
+		<input id="crear-receta" class="button green rigth" style="color:#ffffff;" value="${message(code: 'default.button.new.receta', default: 'Nueva Receta')}" />
 		
 		
 		
