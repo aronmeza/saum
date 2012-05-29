@@ -28,9 +28,6 @@
 <g:each in="${etapaInstance?.ingredientes?}" var="i">
     <li><g:link controller="ingrediente" action="edit2" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
 </g:each>
-<li class="add">
-<g:link controller="ingrediente" action="create" params="['etapa.id': etapaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'ingrediente.label', default: 'Ingrediente')])}</g:link>
-</li>
 </ul>
 
 </div>
