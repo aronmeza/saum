@@ -22,13 +22,22 @@ class IngredienteController {
     def save() {
         def ingredienteInstance = new Ingrediente(params)
         ingredienteInstance.etapa=Etapa.get(params.etapaId)
+        def materia= MateriaPrima.findByNombre(params.materia.nombre)
+		if(materia!=null){
+			ingredienteInstance.materia = materia
+		}else{
+			materia= new MateriaPrima(
+				nombre:params.materia.nombre
+				).save(flush:true)
+			ingredienteInstance.materia = materia
+		}
         if (!ingredienteInstance.save(flush: true)) {
-            render(view: "create", model: [ingredienteInstance: ingredienteInstance])
+            redirect(action: "edit",controller:"etapa" , id: ingredienteInstance.etapa.id)
             return
         }
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), ingredienteInstance.id])
-        redirect(action: "show", id: ingredienteInstance.id)
+        redirect(action: "edit",controller:"etapa" , id: ingredienteInstance.etapa.id)
     }
 
     def show() {
