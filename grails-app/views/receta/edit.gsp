@@ -26,7 +26,9 @@
 				<g:hiddenField name="id" value="${recetaInstance?.id}" />
 				<g:hiddenField name="version" value="${recetaInstance?.version}" />
 				<fieldset class="form">
+				<div class="inputRight">
 					<g:render template="form"/>
+				</div>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

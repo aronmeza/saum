@@ -33,9 +33,53 @@
 	</label>
 	<g:textField name="tiempo" maxlength="40" value="${recetaInstance?.tiempo}"/>
 </div>
+<h2>Etapas</h2>
+
+<g:each in="${recetaInstance?.etapas?}" var="e">
+	<!----------------------------------------------------------------------------------------->
+<div class="row">
+	<div class="div-l">
+		<label for="nombre">
+			<g:message code="etapa.nombre.label" default="Nombre" />
+			<span class="required-indicator">*</span>
+		</label>
+		<!--g:textField name="nombre" maxlength="70" required="" value="${e?.nombre}"/-->
+		${e?.nombre}
+	</div>
+	
+	<div class="div-r">
+		<label for="procedimiento">
+			<g:message code="etapa.procedimiento.label" default="Procedimiento" />
+			
+		</label>
+		<!--g:textArea name="procedimiento" cols="40" rows="5" maxlength="10000" value="${e?.procedimiento}"/-->
+		<br/>
+		${e?.procedimiento}
+	</div>
+	
+	<div class="div-l">
+		<label for="ingredientes">
+			<g:message code="etapa.ingredientes.label" default="Ingredientes" />
+			
+		</label>
+		<br/>
+	<ul class="one-to-many">
+	<g:each in="${e?.ingredientes?}" var="i">
+	
+	    <li><g:link controller="ingrediente" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+	</g:each>	
+	</div>
+		
+</div>	
+
+	<g:link class="button green rigth" style="color:#ffffff;" controller="etapa" action="edit" id="${e?.id}">Editar</g:link>
+	
+	
+	<!----------------------------------------------------------------------------------------->
+</g:each>
 
 <div id="accordion">
-<h3>Datos Complementarios</h3>
+<h3><a>Datos Complementarios</a></h3>
 	<div>
 		<div class="${hasErrors(bean: recetaInstance, field: 'porcion', 'error')} div-l">
 			<label for="porcion">
@@ -149,14 +193,14 @@
 		
 	</label>
 	
-<ul class="one-to-many">
+<!--ul class="one-to-many">
 <g:each in="${recetaInstance?.etapas?}" var="e">
     <li><g:link controller="etapa" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="etapa" action="create" params="['receta.id': recetaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'etapa.label', default: 'Etapa')])}</g:link>
 </li>
-</ul>
+</ul-->
 
 </div>
 <r:script>

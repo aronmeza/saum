@@ -48,6 +48,7 @@ class Receta {
     
     static mapping = {
         etapas sort: 'id', order: 'asc'
+        etapas casacade: 'all'
     }
 
     void setNombre( String n){
