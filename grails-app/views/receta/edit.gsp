@@ -33,6 +33,79 @@
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
-		</div> 
-	</body>
+		</div>
+                <input id="crear-etapa" class="button green rigth" value="${message(code: 'default.button.new.etapa', default: 'Nueva Etapa')}" />
+                
+                <div id="dialog-form-etapa" title="Agregar Etapa">
+                  <p class="validateTips"></p>
+                  <form id="formrecetasend" action="/saum/etapa/save"  method="POST" >
+                    <g:hiddenField name="idReceta" value="${recetaInstance?.id}" />
+                    <fieldset class="dialog">                    
+                  <label for="nombre" class="dialog"><g:message code="etapa.nombre.label" default="Nombre"/></label>
+                  <input type="text" name="nombreEtapa" id="nombreEtapaForm" class="text ui-widget-content ui-corner-all dialog" />
+                  <label for="procedimiento" class="dialog"><g:message code="etapa.procedimiento.label" default="Procedimiento"/></label>
+                  <input type="text" name="procedimientoEtapa" id="procedimientoEtapaform" class="text ui-widget-content ui-corner-all dialog" />
+                  </fieldset>
+                  </form>
+                </div>                 
+        
+        <r:script>
+        $(document).ready(function(){
+         $( "#dialog-form-etapa" ).dialog("close");
+         $( "#dialog:ui-dialog" ).dialog( "destroy" );
+         var nombre = $("#nombreEtapaForm"),
+          procedimiento=$("#procedimientoEtapaform"),
+          allFields = $( [] ).add( nombre ).add(procedimiento),
+          tips = $( ".validateTips" );
+          
+         function updateTips( t ) {
+		tips.text( t ).addClass( "ui-state-highlight" );
+		setTimeout(function() {
+		tips.removeClass( "ui-state-highlight", 1500 );
+				}, 
+		500 );
+	}
+        
+        function checkRegexp( o, regexp, n ) {
+			if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass( "ui-state-error" );
+				updateTips( n );
+				return false;
+			} else {
+				return true;
+			}
+	}
+         
+         
+        $( "#dialog-form-etapa" ).dialog({
+                                autoOpen: false,
+				height: 400,
+				width: 650,
+				modal: true,
+                                buttons: {
+                                  "Agregar Etapa": function() {
+						var bValid = true;
+						allFields.removeClass( "ui-state-error" );
+							
+						if ( bValid ) {
+							$( "#nombreEtapaForm" ).text( nombre.val());
+							$( "#procedimientoEtapaform" ).text( procedimiento.val());
+							$( "#dialog-form-etapa" ).dialog( "close" );
+							window.location="/saum/receta/saveMin?nombre="+$( "#nombreform" ).text()+"&rendimiento="+$( "#rendimientoform" ).text()
+	
+						}
+					},
+                                        Cancelar: function() {
+						$( "#dialog-form-etapa" ).dialog( "close" );
+					}
+                                },close: function() {
+					allFields.val( "" ).removeClass( "ui-state-error" );
+				}
+                                });
+        $("#crear-etapa").click(function(){
+          $( "#dialog-form-etapa" ).dialog("open");
+        });
+        });  
+        </r:script>
+ 	</body>
 </html>
