@@ -25,6 +25,7 @@
 			<g:form method="post" >
 				<g:hiddenField name="id" value="${etapaInstance?.id}" />
 				<g:hiddenField name="version" value="${etapaInstance?.version}" />
+				<g:hiddenField name="receta.id" value="${etapaInstance?.receta?.id}" />
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

@@ -1,6 +1,7 @@
 package saum
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class MateriaPrimaController {
 
@@ -99,5 +100,15 @@ class MateriaPrimaController {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])
             redirect(action: "show", id: params.id)
         }
+    }
+    
+     def buscaMateriaPrima(){
+    	def filtro= "%"+params.term+"%"
+    	def listaMateria = MateriaPrima.findByNombreIlike(filtro)
+        def lista = []
+        for(materiaPrima in listaMateria) {
+            lista << materiaPrima.nombre
+        }
+        render lista as JSON
     }
 }

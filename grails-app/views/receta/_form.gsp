@@ -1,80 +1,75 @@
 <%@ page import="saum.Receta" %>
 
-
-
-<div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
-	<label for="nombre">
-		<g:message code="receta.nombre.label" default="Nombre" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
-</div>
-
-<div class="${hasErrors(bean: recetaInstance, field: 'rendimiento', 'error')} required div-r">
-	<label for="rendimiento">
-		<g:message code="receta.rendimiento.label" default="Rendimiento" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field type="number" name="rendimiento" required="" value="${fieldValue(bean: recetaInstance, field: 'rendimiento')}"/>
-</div>
-
-<div class="${hasErrors(bean: recetaInstance, field: 'temperatura', 'error')} div-l">
-	<label for="temperatura">
-		<g:message code="receta.temperatura.label" default="Temperatura" />
+<div >
+	<div class="row">
+		<div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
+			<label for="nombre">
+				<g:message code="receta.nombre.label" default="Nombre" />
+				<span class="required-indicator">*</span>
+			</label>
+			<g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
+		</div>
+	
 		
-	</label>
-	<g:textField name="temperatura" maxlength="40" value="${recetaInstance?.temperatura}"/>
-</div>
-
-<div class="${hasErrors(bean: recetaInstance, field: 'tiempo', 'error')}div-r">
-	<label for="tiempo">
-		<g:message code="receta.tiempo.label" default="Tiempo" />
+		<div class="${hasErrors(bean: recetaInstance, field: 'rendimiento', 'error')} required div-r">
+			<label for="rendimiento">
+				<g:message code="receta.rendimiento.label" default="Rendimiento" />
+				<span class="required-indicator">*</span>
+			</label>
+			<g:field type="number" name="rendimiento" required="" value="${fieldValue(bean: recetaInstance, field: 'rendimiento')}"/>
+		</div>
 		
-	</label>
-	<g:textField name="tiempo" maxlength="40" value="${recetaInstance?.tiempo}"/>
+		<div class="${hasErrors(bean: recetaInstance, field: 'temperatura', 'error')} div-l">
+			<label for="temperatura">
+				<g:message code="receta.temperatura.label" default="Temperatura" />
+				
+			</label>
+			<g:textField name="temperatura" maxlength="40" value="${recetaInstance?.temperatura}"/>
+		</div>
+		
+		<div class="${hasErrors(bean: recetaInstance, field: 'tiempo', 'error')}div-r">
+			<label for="tiempo">
+				<g:message code="receta.tiempo.label" default="Tiempo" />
+				
+			</label>
+			<g:textField name="tiempo" maxlength="40" value="${recetaInstance?.tiempo}"/>
+		</div>
+	</div>
 </div>
-<h2>Etapas</h2>
 
 <g:each in="${recetaInstance?.etapas?}" var="e">
 	<!----------------------------------------------------------------------------------------->
-<div class="row">
-	<div class="div-l">
-		<label for="nombre">
-			<g:message code="etapa.nombre.label" default="Nombre" />
-			<span class="required-indicator">*</span>
-		</label>
-		<!--g:textField name="nombre" maxlength="70" required="" value="${e?.nombre}"/-->
-		${e?.nombre}
-	</div>
-	
-	<div class="div-r">
-		<label for="procedimiento">
-			<g:message code="etapa.procedimiento.label" default="Procedimiento" />
-			
-		</label>
-		<!--g:textArea name="procedimiento" cols="40" rows="5" maxlength="10000" value="${e?.procedimiento}"/-->
-		<br/>
-		${e?.procedimiento}
-	</div>
-	
-	<div class="div-l">
-		<label for="ingredientes">
-			<g:message code="etapa.ingredientes.label" default="Ingredientes" />
-			
-		</label>
-		<br/>
-	<ul class="one-to-many">
-	<g:each in="${e?.ingredientes?}" var="i">
-	
-	    <li><g:link controller="ingrediente" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-	</g:each>	
-	</div>
+<h2>${e?.nombre}</h2>
+<div class="border">	
+	<div class="row">
+		<div class="div-r">
+			<label for="procedimiento">
+				<g:message code="etapa.procedimiento.label" default="Procedimiento" />
+				
+			</label>
+			<!--g:textArea name="procedimiento" cols="40" rows="5" maxlength="10000" value="${e?.procedimiento}"/-->
+			<br/>
+			${e?.procedimiento}
+		</div>
 		
-</div>	
+		<div class="div-l">
+			<label for="ingredientes">
+				<g:message code="etapa.ingredientes.label" default="Ingredientes" />
+				
+			</label>
+			<br/>
+		<ul class="one-to-many">
+		<g:each in="${e?.ingredientes?}" var="i">
+		
+		    <li><g:link controller="ingrediente" action="edit" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+		</g:each>	
+		</div>
+			
+	</div>	
 
-	<g:link class="button green rigth" style="color:#ffffff;" controller="etapa" action="edit" id="${e?.id}">Editar</g:link>
+<g:link class="button green rigth" style="color:#ffffff;" controller="etapa" action="edit" id="${e?.id}">Editar</g:link>
 	
-	
+</div>
 	<!----------------------------------------------------------------------------------------->
 </g:each>
 
@@ -187,22 +182,22 @@
 	</div>
 </div>
 
-<div class="${hasErrors(bean: recetaInstance, field: 'etapas', 'error')} ">
+<!--div class="${hasErrors(bean: recetaInstance, field: 'etapas', 'error')} ">
 	<label for="etapas">
 		<g:message code="receta.etapas.label" default="Etapas" />
 		
 	</label>
 	
-<!--ul class="one-to-many">
+<ul class="one-to-many">
 <g:each in="${recetaInstance?.etapas?}" var="e">
     <li><g:link controller="etapa" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
 <g:link controller="etapa" action="create" params="['receta.id': recetaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'etapa.label', default: 'Etapa')])}</g:link>
 </li>
-</ul-->
+</ul>
 
-</div>
+</div-->
 <r:script>
 $(function() {
 		$( "#accordion" ).accordion({collapsible: true, active: false});
