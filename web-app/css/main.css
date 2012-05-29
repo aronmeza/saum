@@ -603,11 +603,20 @@ a.skip {
  	margin: 5px 0px 5px 0px;
 }
 
-input {
+.inputRight input {
     float: right;
     margin-right: 20px;
 }
 
+.inputRight select{
+	float: right;
+    margin-right: 20px;
+}
+
 #accordion {
-    display: table;
+    display: inline-table;
+}
+
+.row {
+    display: table-row-group;
 }

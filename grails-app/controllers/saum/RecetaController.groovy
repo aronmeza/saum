@@ -55,7 +55,8 @@ class RecetaController {
             	return
 		}
         }
-
+		
+		println "Datos de receta:              "+recetaInstance
         [recetaInstance: recetaInstance]
     }
 

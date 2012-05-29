@@ -33,9 +33,50 @@
 	</label>
 	<g:textField name="tiempo" maxlength="40" value="${recetaInstance?.tiempo}"/>
 </div>
+<h2>Etapas</h2>
+
+<g:each in="${recetaInstance?.etapas?}" var="e">
+	<!----------------------------------------------------------------------------------------->
+<div class="row">
+	<div class="div-l">
+		<label for="nombre">
+			<g:message code="etapa.nombre.label" default="Nombre" />
+			<span class="required-indicator">*</span>
+		</label>
+		<g:textField name="nombre" maxlength="70" required="" value="${e?.nombre}"/>
+	</div>
+	
+	<div class="div-r">
+		<label for="procedimiento">
+			<g:message code="etapa.procedimiento.label" default="Procedimiento" />
+			
+		</label>
+		<g:textArea name="procedimiento" cols="40" rows="5" maxlength="10000" value="${e?.procedimiento}"/>
+	</div>
+	
+	<div class="div-l">
+		<label for="ingredientes">
+			<g:message code="etapa.ingredientes.label" default="Ingredientes" />
+			
+		</label>
+		
+	<ul class="one-to-many">
+	<g:each in="${e?.ingredientes?}" var="i">
+	    <li><g:link controller="ingrediente" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
+	</g:each>	
+	</div>	
+</div>	
+	
+	
+	
+	
+	
+	
+	<!----------------------------------------------------------------------------------------->
+</g:each>
 
 <div id="accordion">
-<h3>Datos Complementarios</h3>
+<h3><a>Datos Complementarios</a></h3>
 	<div>
 		<div class="${hasErrors(bean: recetaInstance, field: 'porcion', 'error')} div-l">
 			<label for="porcion">
