@@ -70,4 +70,5 @@ class Receta {
         sabor=str?.toUpperCase()
     }
     
+    
 }

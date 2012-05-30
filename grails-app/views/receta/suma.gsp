@@ -1,4 +1,4 @@
-
+<%@ page defaultCodec="IngredienteFormat" %>
 <%@ page import="saum.Receta" %>
 <!doctype html>
 <html>
@@ -41,7 +41,8 @@
                         <ol>
                         <g:if  test="${listaIngredientes}">
                                     <g:each  in="${listaIngredientes}" var="i">
-                                          <li><h3><a><span aria-labelledby="ingredientes-label">${i?.cantidad} ${i?.unidadMedida} ${i?.materia.nombre}</span></a></h3></li>        
+                                          <!--li><h3><a><span aria-labelledby="ingredientes-label">${i?.cantidad} ${i?.unidadMedida} ${i?.materia.nombre}</span></a></h3></li-->
+                                          <li><h3><a><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()} </span></a></h3></li>        
                                 </g:each>
                             </g:if>
                         </ol>
