@@ -52,15 +52,17 @@ class RecetaService {
            suma.put(ing.materia.id,ing)
        }
        def receta=convertirReceta (rendimiento, idReceta)
-       for(Ingrediente ingres:receta.ingredientes){
-           ingres=homologarUnidadMedida(ingres)
-           if(suma.containsKey(ingres.materia.id)){
-               ingres.cantidad=suma.getAt(ingres.materia.id).cantidad.add(ingres.cantidad)
-               suma.put(ingres.materia.id,ingres)
-           }else{
-               suma.put(ingres.materia.id,ingres)
-           }
+       for(Etapa etapa:receta.etapas){  
+        for(Ingrediente ingres:etapa.ingredientes){
+               ingres=homologarUnidadMedida(ingres)
+               if(suma.containsKey(ingres.materia.id)){
+                ingres.cantidad=suma.getAt(ingres.materia.id).cantidad.add(ingres.cantidad)
+                suma.put(ingres.materia.id,ingres)
+            }else{
+                   suma.put(ingres.materia.id,ingres)
+            }
        }
+    }
        
         List<Ingrediente> nueva=new ArrayList<Ingrediente>()
         def llaves=suma.keySet()
@@ -77,12 +79,13 @@ class RecetaService {
     Ingrediente homologarUnidadMedida(Ingrediente ingrediente){
         if(ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_KILOGRAMO)||ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_LITRO)){
             ingrediente.cantidad = ingrediente.cantidad.multiply(new BigDecimal("1000"))
-            if(ingrediente.unidadMedida == Constantes.UNIDAD_MEDIDA_KILOGRAMO){
+            if(ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_KILOGRAMO)){
                 ingrediente.unidadMedida = Constantes.UNIDAD_MEDIDA_GRAMO
-            }else if(ingrediente.unidadMedida == Constantes.UNIDAD_MEDIDA_LITRO){
+            }else if(ingrediente.unidadMedida.equals(Constantes.UNIDAD_MEDIDA_LITRO)){
                 ingrediente.unidadMedida = Constantes.UNIDAD_MEDIDA_MILILITRO
             }
         }
+        return ingrediente
     }
 
 }

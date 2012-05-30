@@ -144,9 +144,10 @@ IngredienteController
         render recetaInstance as JSON
 	}
 	
-	def indexSuma(){
+	def suma(){
 		def listaRecectas = Receta.findAll()
      	session.ObjectListKey = null
+        session.ObjectListKey2 = null
      [listaRecectasInstance: listaRecectas]
 	} 
 	
@@ -160,6 +161,11 @@ IngredienteController
 		if(params.nombre != null){
 			def id = Receta.findByNombre(params.nombre).id
 			if(id!=null){
+                        def listaRecetasSumadas=session.ObjectListKey2
+                        if(listaRecetasSumadas==null){
+                            listaRecetasSumadas=new ArrayList();
+                        }
+                        listaRecetasSumadas.add(new Receta(nombre:params.nombre,rendimiento:params.rendimiento))
 			def listaIngredientes
 				if(paramsIng!=null){
 					println "bingoooooooo $paramsIng"				
@@ -171,7 +177,8 @@ IngredienteController
 				}
 				
 				session.ObjectListKey = listaIngredientes
-				render(view: "indexSuma", model: [listaIngredientes: listaIngredientes,listaRecectasInstance: listaRecectas])
+                                session.ObjectListKey2 = listaRecetasSumadas
+				render(view: "suma", model: [listaIngredientes: listaIngredientes,listaRecectasInstance: listaRecectas,listaRecetasSumadas:listaRecetasSumadas])
 				return
 			}else{
 		        flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
@@ -184,7 +191,7 @@ IngredienteController
             	return
 		}
 		
-		render(view: "indexSuma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
+		render(view: "suma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
 	}
 	
 	

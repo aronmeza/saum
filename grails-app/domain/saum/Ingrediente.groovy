@@ -22,6 +22,14 @@ class Ingrediente {
         
     }
     
+    BigDecimal getCantidad(){
+        String decimales = String.format("%.2f", cantidad);
+    	if(decimales.substring(decimales.length()-2).equals("00")){
+    		return new BigDecimal(decimales.substring(0,decimales.length()-3))
+    	}
+    	return new BigDecimal(decimales)
+    }
+    
     void setPresentacion(String str){
         presentacion=str?.toUpperCase()
     }
