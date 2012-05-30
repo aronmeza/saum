@@ -1,4 +1,4 @@
-<!doctype html>
+<!--doctype html>
 <html>
 	<head>
 		<meta name="layout" content="main"/>
@@ -119,4 +119,5 @@
 			</div>
 		</div>
 	</body>
-</html>
+</html-->
+ ${response.sendRedirect("receta/index")}
