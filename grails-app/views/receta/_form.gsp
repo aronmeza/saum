@@ -73,7 +73,7 @@
 	<!----------------------------------------------------------------------------------------->
 </g:each>
 <div class="row">
-	<g:link class="button green left" style="color:#ffffff;" controller="etapa" action="createMin" params="['recetaId': recetaInstance?.id]">Agregar Etapa</g:link>
+        <input id="crear-etapa" class="button green rigth" style="color:#ffffff;" value="${message(code: 'default.button.new.etapa', default: 'Agregar Etapa')}" />
 </div>
 <div id="accordion">
 <h3><a>Datos Complementarios</a></h3>
@@ -184,6 +184,14 @@
 	</div>
 </div>
 
+<div id="dialog-form-etapa" title="Agregar Etapa">
+  <g:form>
+  <label for="nombre" class="dialog"><g:message code="receta.nombre.label" default="Nombre"/></label>
+  <input type="text" name="nombreEtapa" id="nombreetapa" class="text ui-widget-content ui-corner-all dialog" />  
+  </g:form>
+  
+</div>
+
 <!--div class="${hasErrors(bean: recetaInstance, field: 'etapas', 'error')} ">
 	<label for="etapas">
 		<g:message code="receta.etapas.label" default="Etapas" />
@@ -201,6 +209,32 @@
 
 </div-->
 <r:script>
+$(document).ready(function(){
+$("#dialog-form-etapa").dialog('close');
+ $( "#dialog:ui-dialog" ).dialog( "destroy" );
+ var nombre=$("#nombreetapa");
+ var idReceta=$( "#id" );
+ console.log(nombre);
+$("#dialog-form-etapa").dialog({
+ autoOpen: false,
+ height: 400,
+ width: 650,
+ modal: true,
+ buttons: {
+    "Agregar Etapa": function() {
+      $( "#dialog-form-etapa" ).dialog( "close" );
+      window.location="/saum/etapa/createMin?nombreEtapa="+nombre.val()+"&recetaId="+idReceta.val()
+      },
+    Cancelar: function() {
+      $( "#dialog-form-etapa" ).dialog( "close" );
+    }
+}
+});
+
+  $("#crear-etapa").click(function(){
+    $( "#dialog-form-etapa" ).dialog("open");
+  });
+});
 $(function() {
 		$( "#accordion" ).accordion({collapsible: true, active: false});
 	})

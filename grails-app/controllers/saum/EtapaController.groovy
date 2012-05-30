@@ -21,6 +21,8 @@ class EtapaController {
 	
 	def createMin() {
 		def receta = Receta.get(params?.recetaId)
+                log.debug "--------------> ${params?.recetaId}"
+                log.debug "--------------> ${params?.nombreEtapa}"
 		def etapa=new Etapa(nombre:params?.nombreEtapa,receta:receta).save(flush:true)
 		
         render(view:'edit', model:[etapaInstance: etapa, ingredienteInstance:new Ingrediente()])
