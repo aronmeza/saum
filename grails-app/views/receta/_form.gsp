@@ -185,10 +185,10 @@
 </div>
 
 <div id="dialog-form-etapa" title="Agregar Etapa">
-  <g:form>
+  <!--g:form-->
   <label for="nombre" class="dialog"><g:message code="receta.nombre.label" default="Nombre"/></label>
   <input type="text" name="nombreEtapa" id="nombreetapa" class="text ui-widget-content ui-corner-all dialog" />  
-  </g:form>
+  <!--/g:form-->
   
 </div>
 
