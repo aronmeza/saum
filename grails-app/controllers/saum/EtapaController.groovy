@@ -23,7 +23,7 @@ class EtapaController {
 		def receta = Receta.get(params?.recetaId)
 		def etapa=new Etapa(nombre:params?.nombreEtapa,receta:receta).save(flush:true)
 		
-        render(view:'edit' model:[etapaInstance: etapa, ingredienteInstance:new Ingrediente()])
+        render(view:'edit', model:[etapaInstance: etapa, ingredienteInstance:new Ingrediente()])
     }
 	
     def save() {

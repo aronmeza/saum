@@ -18,7 +18,7 @@ class Ingrediente {
     	if(decimales.substring(decimales.length()-2).equals("00")){
     		return decimales.substring(0,decimales.length()-3) + " " + unidadMedida + " " + materia.nombre +" " +presentacion
     	}
-    	return cantidadDividida[0] + " " + unidadMedida + " " + materia.nombre +" " +presentacion
+    	return decimales + " " + unidadMedida + " " + materia.nombre +" " +presentacion
         
     }
     

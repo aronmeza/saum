@@ -35,27 +35,34 @@ class RecetaController {
     }
 
     def show() {
+    println "1------------------------------------------------"+params
      def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
-		if(params.nombre != null){
-		def id = Receta.findByNombre(params.nombre).id
-		if(id!=null){
-		def receta = recetaService.convertirReceta(new BigDecimal(params.rendimiento),id)
-		render(view:"show", model: [recetaInstance:receta])
-		return
-		}else{
-		       flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
-                    redirect(action: "list")
-                return
-
-		}
-		}else{
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
-	            redirect(action: "list")
-            	return
-		}
-        }
+        println "6-----------------------------------------------"
+			if(params.nombre != null){
+			println "5------------------------------------------------"
+			def id = Receta.findByNombre(params.nombre).id
+			println "7------------------------------------------------"+id
+				if(id!=null){
+				def receta = recetaService.convertirReceta(new BigDecimal(params.rendimiento),id)
+				println "8--------------------------------receta----------------"+receta
+				render(view:"show", model: [recetaInstance:receta])
+				return
+				}else{
+				println "4------------------------------------------------"
+				       flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
+		                    redirect(action: "list")
+		                return
 		
+				}
+			}else{
+			println "3------------------------------------------------"
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
+		            redirect(action: "list")
+	            	return
+			}
+        }
+		println "2------------------------------------------------"
         [recetaInstance: recetaInstance]
     }
 

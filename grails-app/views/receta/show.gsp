@@ -6,211 +6,229 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'receta.label', default: 'Receta')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		
+		<style type="text/css">
+
+	    @media print
+	    {
+             h2{ color: #48802c;}
+             h3{
+              font-weight: lighter;
+              font-size: .8em;
+              margin: 0.8em 0 0.3em 0;
+            } 
+            #botonesNav{display:none}
+	    	.footer { display: none; }
+	        #menu { display: none; }
+	        #printable { display: block; }
+                #grailsLogo{ float: right}
+                .message{display:none;}
+                ol{  width: 45em; }
+                ol li{  float: left;  width: 15em; }
+                br{  clear: left;}
+                div.wrapper{  margin-bottom: 1em;}
+                ol li a{  display: block;  width: 15em;  text-decoration: none;}
+
+	    }
+	    </style>
 	</head>
 	<body>
-		<a href="#show-receta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-	
-		<div id="show-receta" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+<div id="show-receta">
+<h1 style="margin:0px 0px 0px 0px;">${recetaInstance?.nombre}</h1>
+		<div class="div-l">
+			
+			<h4>${recetaInstance.rendimiento} porciones<g:if test="${recetaInstance?.tiempo}">, ${recetaInstance?.tiempo}</g:if> </h4>
+		</div>
+		<div class="div-r" align="right">
+			<g:if test="${recetaInstance?.temperatura}">
+				<h4>${recetaInstance?.temperatura} grados Centigrados</h4>
 			</g:if>
-                        
-                <div class="row">
-                        <div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
-                          <label for="nombre">
-                                  <g:message code="receta.nombre.label" default="Nombre" />
-                                  <span class="required-indicator">*</span>
-                          </label>
-                          <g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
-                        </div>
-                  
-                        <div class="${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required div-l">
-                          <label for="nombre">
-                                  <g:message code="receta.nombre.label" default="Nombre" />
-                                  <span class="required-indicator">*</span>
-                          </label>
-                          <g:textField name="nombre" maxlength="70" required="" value="${recetaInstance?.nombre}"/>
-                        </div>
 		</div>
-                        
-                        
-                        
-                        
-			<ol class="property-list receta">
-			
-				<g:if test="${recetaInstance?.nombre}">
-				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="receta.nombre.label" default="Nombre" /></span>
-					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${recetaInstance}" field="nombre"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.rendimiento}">
-				<li class="fieldcontain">
-					<span id="rendimiento-label" class="property-label"><g:message code="receta.rendimiento.label" default="Rendimiento" /></span>
-					
-						<span class="property-value" aria-labelledby="rendimiento-label"><g:fieldValue bean="${recetaInstance}" field="rendimiento"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.temperatura}">
-				<li class="fieldcontain">
-					<span id="temperatura-label" class="property-label"><g:message code="receta.temperatura.label" default="Temperatura" /></span>
-					
-						<span class="property-value" aria-labelledby="temperatura-label"><g:fieldValue bean="${recetaInstance}" field="temperatura"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.tiempo}">
-				<li class="fieldcontain">
-					<span id="tiempo-label" class="property-label"><g:message code="receta.tiempo.label" default="Tiempo" /></span>
-					
-						<span class="property-value" aria-labelledby="tiempo-label"><g:fieldValue bean="${recetaInstance}" field="tiempo"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.porcion}">
-				<li class="fieldcontain">
-					<span id="porcion-label" class="property-label"><g:message code="receta.porcion.label" default="Porcion" /></span>
-					
-						<span class="property-value" aria-labelledby="porcion-label"><g:fieldValue bean="${recetaInstance}" field="porcion"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.textura}">
-				<li class="fieldcontain">
-					<span id="textura-label" class="property-label"><g:message code="receta.textura.label" default="Textura" /></span>
-					
-						<span class="property-value" aria-labelledby="textura-label"><g:fieldValue bean="${recetaInstance}" field="textura"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.forma}">
-				<li class="fieldcontain">
-					<span id="forma-label" class="property-label"><g:message code="receta.forma.label" default="Forma" /></span>
-					
-						<span class="property-value" aria-labelledby="forma-label"><g:fieldValue bean="${recetaInstance}" field="forma"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.color}">
-				<li class="fieldcontain">
-					<span id="color-label" class="property-label"><g:message code="receta.color.label" default="Color" /></span>
-					
-						<span class="property-value" aria-labelledby="color-label"><g:fieldValue bean="${recetaInstance}" field="color"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.sabor}">
-				<li class="fieldcontain">
-					<span id="sabor-label" class="property-label"><g:message code="receta.sabor.label" default="Sabor" /></span>
-					
-						<span class="property-value" aria-labelledby="sabor-label"><g:fieldValue bean="${recetaInstance}" field="sabor"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.calorias}">
-				<li class="fieldcontain">
-					<span id="calorias-label" class="property-label"><g:message code="receta.calorias.label" default="Calorias" /></span>
-					
-						<span class="property-value" aria-labelledby="calorias-label"><g:fieldValue bean="${recetaInstance}" field="calorias"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.proteinas}">
-				<li class="fieldcontain">
-					<span id="proteinas-label" class="property-label"><g:message code="receta.proteinas.label" default="Proteinas" /></span>
-					
-						<span class="property-value" aria-labelledby="proteinas-label"><g:fieldValue bean="${recetaInstance}" field="proteinas"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.grasa}">
-				<li class="fieldcontain">
-					<span id="grasa-label" class="property-label"><g:message code="receta.grasa.label" default="Grasa" /></span>
-					
-						<span class="property-value" aria-labelledby="grasa-label"><g:fieldValue bean="${recetaInstance}" field="grasa"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.carbohidratos}">
-				<li class="fieldcontain">
-					<span id="carbohidratos-label" class="property-label"><g:message code="receta.carbohidratos.label" default="Carbohidratos" /></span>
-					
-						<span class="property-value" aria-labelledby="carbohidratos-label"><g:fieldValue bean="${recetaInstance}" field="carbohidratos"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.colesterol}">
-				<li class="fieldcontain">
-					<span id="colesterol-label" class="property-label"><g:message code="receta.colesterol.label" default="Colesterol" /></span>
-					
-						<span class="property-value" aria-labelledby="colesterol-label"><g:fieldValue bean="${recetaInstance}" field="colesterol"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.sodio}">
-				<li class="fieldcontain">
-					<span id="sodio-label" class="property-label"><g:message code="receta.sodio.label" default="Sodio" /></span>
-					
-						<span class="property-value" aria-labelledby="sodio-label"><g:fieldValue bean="${recetaInstance}" field="sodio"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.fibra}">
-				<li class="fieldcontain">
-					<span id="fibra-label" class="property-label"><g:message code="receta.fibra.label" default="Fibra" /></span>
-					
-						<span class="property-value" aria-labelledby="fibra-label"><g:fieldValue bean="${recetaInstance}" field="fibra"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.tipoPlato}">
-				<li class="fieldcontain">
-					<span id="tipoPlato-label" class="property-label"><g:message code="receta.tipoPlato.label" default="Tipo Plato" /></span>
-					
-						<span class="property-value" aria-labelledby="tipoPlato-label"><g:fieldValue bean="${recetaInstance}" field="tipoPlato"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${recetaInstance?.etapas}">
-				<li class="fieldcontain">
-					<span id="etapas-label" class="property-label"><g:message code="receta.etapas.label" default="Etapas" /></span>
-					
-						<g:each in="${recetaInstance.etapas}" var="e">
-						<span class="property-value" aria-labelledby="etapas-label"><g:link controller="etapa" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${recetaInstance?.id}" />
-					<g:link class="edit" action="edit" id="${recetaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+<br/>
+<br/>
+
+<g:if test="${recetaInstance?.etapas}">
+<g:each in="${recetaInstance?.etapas?}" var="e">
+<h2>${e?.nombre}</h2>
+<div class="border">	
+	<div class="row">
+		<div class="div-r">
+			<label for="procedimiento">
+				<g:message code="etapa.procedimiento.label" default="Procedimiento" />
+				
+			</label>
+			<!--g:textArea name="procedimiento" cols="40" rows="5" maxlength="10000" value="${e?.procedimiento}"/-->
+			<br/>
+			${e?.procedimiento}
 		</div>
+		
+		<div class="div-l">
+			<label for="ingredientes">
+				<g:message code="etapa.ingredientes.label" default="Ingredientes" />
+				
+			</label>
+			<br/>
+		<ul class="one-to-many">
+		<g:each in="${e?.ingredientes?}" var="i">
+		
+		    <li>${i?.encodeAsHTML()}</li>
+		</g:each>	
+		</div>
+			
+	</div>	
+	
+</div>
+</g:each>
+</g:if>
+
+<div >
+<h3><a>Datos Complementarios</a></h3>
+<br/>
+<br/>
+	<div>
+	<g:if test="${recetaInstance?.porcion}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'porcion', 'error')} div-l">
+			<label for="porcion">
+				<g:message code="receta.porcion.label" default="Porcion" />
+				
+			</label>
+			${recetaInstance?.porcion}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.textura}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'textura', 'error')}div-r">
+			<label for="textura">
+				<g:message code="receta.textura.label" default="Textura" />
+				
+			</label>
+			${recetaInstance?.textura}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.forma}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'forma', 'error')} div-l">
+			<label for="forma">
+				<g:message code="receta.forma.label" default="Forma" />
+				
+			</label>
+			${recetaInstance?.forma}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.color}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'color', 'error')} div-r">
+			<label for="color">
+				<g:message code="receta.color.label" default="Color" />
+				
+			</label>
+			${recetaInstance?.color}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.sabor}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'sabor', 'error')} div-l">
+			<label for="sabor">
+				<g:message code="receta.sabor.label" default="Sabor" />
+				
+			</label>
+			${recetaInstance?.sabor}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.calorias}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'calorias', 'error')} div-r">
+			<label for="calorias">
+				<g:message code="receta.calorias.label" default="Calorias" />
+				
+			</label>
+			${recetaInstance?.calorias}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.proteinas}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'proteinas', 'error')} div-l">
+			<label for="proteinas">
+				<g:message code="receta.proteinas.label" default="Proteinas" />
+				
+			</label>
+			${recetaInstance?.proteinas}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.grasa}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'grasa', 'error')} div-r">
+			<label for="grasa">
+				<g:message code="receta.grasa.label" default="Grasa" />
+				
+			</label>
+			${recetaInstance?.grasa}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.carbohidratos}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'carbohidratos', 'error')} div-l">
+			<label for="carbohidratos">
+				<g:message code="receta.carbohidratos.label" default="Carbohidratos" />
+				
+			</label>
+			${recetaInstance?.carbohidratos}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.colesterol}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'colesterol', 'error')} div-r">
+			<label for="colesterol">
+				<g:message code="receta.colesterol.label" default="Colesterol" />
+				
+			</label>
+			${recetaInstance?.colesterol}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.sodio}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'sodio', 'error')} div-l">
+			<label for="sodio">
+				<g:message code="receta.sodio.label" default="Sodio" />
+				
+			</label>
+			${recetaInstance?.sodio}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.fibra}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'fibra', 'error')} div-r">
+			<label for="fibra">
+				<g:message code="receta.fibra.label" default="Fibra" />
+				
+			</label>
+			${recetaInstance?.fibra}
+		</div>
+		</g:if>
+		
+		<g:if test="${recetaInstance?.tipoPlato}">
+		<div class="${hasErrors(bean: recetaInstance, field: 'tipoPlato', 'error')}div-l ">
+			<label for="tipoPlato">
+				<g:message code="receta.tipoPlato.label" default="Tipo Plato" />
+				
+			</label>
+			${recetaInstance?.tipoPlato}
+		</div>
+		</g:if>
+	</div>
+</div>
+		
+		
+		
+	<div id="botonesNav">
+		<g:form>
+			<fieldset class="buttons">
+				<g:hiddenField name="id" value="${recetaInstance?.id}" />
+				<g:link class="edit" action="edit" id="${recetaInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+				<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+			</fieldset>
+		</g:form>
+	</div>
+</div>
 	</body>
 </html>

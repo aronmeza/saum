@@ -16,6 +16,7 @@ class RecetaService {
              }             
          }
          //receta.rendimiento=rendimiento
+         return receta
      }
      
     
