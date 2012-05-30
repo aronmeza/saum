@@ -43,7 +43,9 @@
                     <g:hiddenField name="etapaId" value="${etapaInstance?.id}" />
                     <g:render template="/ingrediente/form"/>
                   </fieldset>
+                  <br/>
                   <fieldset class="buttons">
+                  
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                     <input id="cancelar" class="cancel" value="${message(code: 'label.cancelar', default: 'Cancelar')}" />
                   </fieldset>

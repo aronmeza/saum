@@ -217,8 +217,8 @@ $("#dialog-form-etapa").dialog('close');
  console.log(nombre);
 $("#dialog-form-etapa").dialog({
  autoOpen: false,
- height: 400,
- width: 650,
+ height: 200,
+ width: 400,
  modal: true,
  buttons: {
     "Agregar Etapa": function() {

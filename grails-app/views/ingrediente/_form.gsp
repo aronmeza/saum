@@ -18,13 +18,6 @@
 	<g:select name="unidadMedida" from="${ingredienteInstance.constraints.unidadMedida.inList}" value="${ingredienteInstance?.unidadMedida}" valueMessagePrefix="ingrediente.unidadMedida" noSelection="['': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: ingredienteInstance, field: 'presentacion', 'error')} ">
-	<label for="presentacion">
-		<g:message code="ingrediente.presentacion.label" default="Presentacion" />
-		
-	</label>
-	<g:textField name="presentacion" maxlength="40" value="${ingredienteInstance?.presentacion}"/>
-</div>
 <div class="fieldcontain ${hasErrors(bean: ingredienteInstance, field: 'materia', 'error')} required">
 	<label for="materia">
 		<g:message code="ingrediente.materia.label" default="Materia" />
@@ -32,6 +25,14 @@
 	</label>
 	<!--g:select id="materia" name="materia.id" from="${saum.MateriaPrima.list()}" optionKey="id" required="" value="${ingredienteInstance?.materia?.id}" class="many-to-one"/-->
 	 <input type="text" id="ingNombre" name="materia.nombre" id="ingNombre" value="${ingredienteInstance?.materia?.nombre}" />
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: ingredienteInstance, field: 'presentacion', 'error')} ">
+	<label for="presentacion">
+		<g:message code="ingrediente.presentacion.label" default="Presentacion" />
+		
+	</label>
+	<g:textField name="presentacion" maxlength="40" value="${ingredienteInstance?.presentacion}"/>
 </div>
 
 

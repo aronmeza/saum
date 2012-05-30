@@ -85,7 +85,7 @@
 <h3><a>Datos Complementarios</a></h3>
 <br/>
 <br/>
-	<div>
+	<div class="row">
 	<g:if test="${recetaInstance?.porcion}">
 		<div class="${hasErrors(bean: recetaInstance, field: 'porcion', 'error')} div-l">
 			<label for="porcion">

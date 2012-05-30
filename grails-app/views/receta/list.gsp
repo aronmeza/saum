@@ -70,6 +70,7 @@
     <fieldset class="dialog">
       <label for="nombre" class="dialog"><g:message code="receta.nombre.label" default="Nombre"/></label>
       <input type="text" name="nombre" id="nombreform" class="text ui-widget-content ui-corner-all dialog" />
+      <br/>
       <label for="rendimiento" class="dialog"><g:message code="receta.rendimiento.label" default="Rendimiento"/></label>
       <input type="text" name="rendimiento" id="rendimientoform" value="" class="text ui-widget-content ui-corner-all dialog" />
     </fieldset>

@@ -30,7 +30,7 @@ class RecetaController {
             render(view: "create", model: [recetaInstance: recetaInstance])
             return
         }
-
+IngredienteController
 		flash.message = message(code: 'default.created.message', args: [message(code: 'receta.label', default: 'Receta'), recetaInstance.id])
         redirect(action: "show", id: recetaInstance.id)
     }

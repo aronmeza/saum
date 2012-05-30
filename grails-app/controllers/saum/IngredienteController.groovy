@@ -22,7 +22,7 @@ class IngredienteController {
     def save() {
         def ingredienteInstance = new Ingrediente(params)
         ingredienteInstance.etapa=Etapa.get(params.etapaId)
-        def materia= MateriaPrima.findByNombre(params.materia.nombre)
+        def materia= MateriaPrima.findByNombre(params.materia.nombre.toUpperCase())
 		if(materia!=null){
 			ingredienteInstance.materia = materia
 		}else{
@@ -93,7 +93,7 @@ class IngredienteController {
         }
 
         ingredienteInstance.properties = params
-		def materia= MateriaPrima.findByNombre(params.materia.nombre)
+		def materia= MateriaPrima.findByNombre(params.materia.nombre.toUpperCase())
 		if(materia!=null){
 			ingredienteInstance.materia = materia
 		}else{
@@ -133,7 +133,7 @@ class IngredienteController {
         }
 
         ingredienteInstance.properties = params
-		def materia= MateriaPrima.findByNombre(params.materia.nombre)
+		def materia= MateriaPrima.findByNombre(params.materia.nombre.toUpperCase())
 		if(materia!=null){
 			ingredienteInstance.materia = materia
 		}else{
@@ -157,18 +157,22 @@ class IngredienteController {
         def ingredienteInstance = Ingrediente.get(params.id)
         if (!ingredienteInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])
-            redirect(action: "list")
+            //redirect(action: "list")
+            redirect(controller:'receta',action:'index')
             return
         }
 
         try {
+        	def idReceta= ingredienteInstance.etapa.receta.id
             ingredienteInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])
-            redirect(action: "list")
+            //redirect(action: "list")
+            redirect(controller:'receta', action:'edit', id:idReceta)
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])
-            redirect(action: "show", id: params.id)
+            //redirect(action: "show", id: params.id)
+            redirect(controller:'receta', action:'edit', id:idReceta)
         }
     }
 }

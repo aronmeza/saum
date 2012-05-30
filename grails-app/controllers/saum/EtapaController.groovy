@@ -98,17 +98,21 @@ class EtapaController {
         if (!etapaInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'etapa.label', default: 'Etapa'), params.id])
             redirect(action: "list")
+            redirect(controller:'receta',action:'index')
             return
         }
 
         try {
+        	def idReceta= etapaInstance.receta.id
             etapaInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'etapa.label', default: 'Etapa'), params.id])
-            redirect(action: "list")
+            //redirect(action: "list")
+            redirect(controller:'receta',action:'index', id: idReceta)
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'etapa.label', default: 'Etapa'), params.id])
             redirect(action: "show", id: params.id)
+            redirect(controller:'receta', action:'edit', id:idReceta)
         }
     }
 }
